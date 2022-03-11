@@ -40,6 +40,27 @@ namespace Kryptonite.Persistance.Repositories {
             if (reader[LOGINNAME] != null && reader[LOGINNAME] != DBNull.Value) {
                 userAccount.LoginName = Conversion.ToString(reader[LOGINNAME]);
             }
+            if (reader[FIRSTNAME] != null && reader[FIRSTNAME] != DBNull.Value) {
+                userAccount.FirstName = Conversion.ToString(reader[FIRSTNAME]);
+            }
+            if (reader[LASTNAME] != null && reader[LASTNAME] != DBNull.Value) {
+                userAccount.LastName = Conversion.ToString(reader[LASTNAME]);
+            }
+            if (reader[ISACTIVE] != null && reader[ISACTIVE] != DBNull.Value) {
+                userAccount.IsActive = Conversion.ToBool(reader[ISACTIVE]);
+            }
+            if (reader[CREATEDBY] != null && reader[CREATEDBY] != DBNull.Value) {
+                userAccount.CreatedBy = Conversion.ToInt(reader[CREATEDBY]);
+            }
+            if (reader[CREATEDDATE] != null && reader[CREATEDDATE] != DBNull.Value) {
+                userAccount.CreatedDate = Conversion.ToDateTime(reader[CREATEDDATE]);
+            }
+            if (reader[UPDATEDBY] != null && reader[UPDATEDBY] != DBNull.Value) {
+                userAccount.UpdateBy = Conversion.ToInt(reader[UPDATEDBY]);
+            }
+            if (reader[UPDATEDDATE] != null && reader[UPDATEDDATE] != DBNull.Value) {
+                userAccount.UpdateDate = Conversion.ToDateTime(reader[UPDATEDDATE]);
+            }
             return userAccount;
         }
         public Task<User> Login(string loginName, string loginPassword) {

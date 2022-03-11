@@ -12,9 +12,11 @@ namespace Kryptonite.Infrastructure.IOC {
 
             //Application Services
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ITerritoryService, TerritoryService>();
 
             //Data
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ITerritoryRepository, TerritoryRepository>();
 
         }
     }

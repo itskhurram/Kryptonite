@@ -63,6 +63,17 @@
                 return 0;
             }
         }
+        public static byte ToByte(object value) {
+            try {
+                if (value != null && value != DBNull.Value && value.ToString() != string.Empty)
+                    return Convert.ToByte(value);
+                else
+                    return 0;
+            }
+            catch (Exception) {
+                return 0;
+            }
+        }
         public static short ToShort(object value) {
             try {
                 if (value != null && value != DBNull.Value && value.ToString() != string.Empty)
