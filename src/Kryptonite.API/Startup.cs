@@ -2,20 +2,10 @@ using Kryptonite.Infrastructure.IOC;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
-using Microsoft.Practices.EnterpriseLibrary.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Kryptonite.API {
     public class Startup {
@@ -31,6 +21,7 @@ namespace Kryptonite.API {
             services.AddSwaggerGen();
             services.AddSingleton(_configuration);
             services.AddSingleton(_sqlDatabase);
+            services.AddMemoryCache();
             RegisterServices(services);
         }
         private static void RegisterServices(IServiceCollection services) {

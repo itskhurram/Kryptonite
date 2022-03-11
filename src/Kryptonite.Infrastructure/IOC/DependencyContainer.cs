@@ -1,6 +1,7 @@
 ﻿using Kryptonite.Application.Interfaces;
 using Kryptonite.Application.Services;
 using Kryptonite.Domain.Interfaces;
+using Kryptonite.Infrastructure.Caching;
 using Kryptonite.Persistance.Repositories;
 
 using Microsoft.Extensions.DependencyInjection;
@@ -11,12 +12,13 @@ namespace Kryptonite.Infrastructure.IOC {
         public static void RegisterServices(IServiceCollection services) {
 
             //Application Services
-            services.AddTransient<IUserService, UserService>();
-            services.AddTransient<ITerritoryService, TerritoryService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITerritoryService, TerritoryService>();
 
             //Data
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<ITerritoryRepository, TerritoryRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ITerritoryRepository, TerritoryRepository>();
+            services.AddScoped<IMemoryCacheProvider, MemoryCacheProvider>();
 
         }
     }

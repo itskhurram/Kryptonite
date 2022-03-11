@@ -13,7 +13,7 @@ namespace Kryptonite.API.Controllers {
             _territoryService = territoryService;
         }
         [HttpGet]
-        public async Task<IEnumerable<Division>> GetDivisions(bool? isActive) {
+        public async Task<IList<Division>> GetDivisions(bool? isActive) {
             return await _territoryService.GetDivisions(isActive);
         }
     }
