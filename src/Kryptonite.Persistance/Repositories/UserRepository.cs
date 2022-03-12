@@ -33,34 +33,17 @@ namespace Kryptonite.Persistance.Repositories {
 
         #region Functions
         private static User Mapper(IDataReader reader) {
-            var userAccount = new User();
-            if (reader[USERID] != null && reader[USERID] != DBNull.Value) {
-                userAccount.UserId = Conversion.ToInt(reader[USERID]);
-            }
-            if (reader[LOGINNAME] != null && reader[LOGINNAME] != DBNull.Value) {
-                userAccount.LoginName = Conversion.ToString(reader[LOGINNAME]);
-            }
-            if (reader[FIRSTNAME] != null && reader[FIRSTNAME] != DBNull.Value) {
-                userAccount.FirstName = Conversion.ToString(reader[FIRSTNAME]);
-            }
-            if (reader[LASTNAME] != null && reader[LASTNAME] != DBNull.Value) {
-                userAccount.LastName = Conversion.ToString(reader[LASTNAME]);
-            }
-            if (reader[ISACTIVE] != null && reader[ISACTIVE] != DBNull.Value) {
-                userAccount.IsActive = Conversion.ToBool(reader[ISACTIVE]);
-            }
-            if (reader[CREATEDBY] != null && reader[CREATEDBY] != DBNull.Value) {
-                userAccount.CreatedBy = Conversion.ToInt(reader[CREATEDBY]);
-            }
-            if (reader[CREATEDDATE] != null && reader[CREATEDDATE] != DBNull.Value) {
-                userAccount.CreatedDate = Conversion.ToDateTime(reader[CREATEDDATE]);
-            }
-            if (reader[UPDATEDBY] != null && reader[UPDATEDBY] != DBNull.Value) {
-                userAccount.UpdateBy = Conversion.ToInt(reader[UPDATEDBY]);
-            }
-            if (reader[UPDATEDDATE] != null && reader[UPDATEDDATE] != DBNull.Value) {
-                userAccount.UpdateDate = Conversion.ToDateTime(reader[UPDATEDDATE]);
-            }
+            User userAccount = new() {
+                UserId = (reader[USERID] != DBNull.Value) ? Conversion.ToInt(reader[USERID]) : 0,
+                LoginName = (reader[LOGINNAME] != DBNull.Value) ? Conversion.ToString(reader[LOGINNAME]) : string.Empty,
+                FirstName = (reader[FIRSTNAME] != DBNull.Value) ? Conversion.ToString(reader[FIRSTNAME]) : string.Empty,
+                LastName = (reader[LASTNAME] != DBNull.Value) ? Conversion.ToString(reader[LASTNAME]) : string.Empty,
+                IsActive = (reader[ISACTIVE] != DBNull.Value) ? Conversion.ToBool(reader[ISACTIVE]) : false,
+                CreatedBy = (reader[CREATEDBY] != DBNull.Value) ? Conversion.ToInt(reader[CREATEDBY]) : 0,
+                CreatedDate = (reader[CREATEDDATE] != DBNull.Value) ? Conversion.ToDateTime(reader[CREATEDDATE]) : DateTime.MinValue,
+                UpdateBy = (reader[UPDATEDBY] != DBNull.Value) ? Conversion.ToInt(reader[UPDATEDBY]) : 0,
+                UpdateDate = (reader[UPDATEDDATE] != DBNull.Value) ? Conversion.ToDateTime(reader[UPDATEDDATE]) : DateTime.MinValue
+            };
             return userAccount;
         }
         public Task<User> Login(string loginName, string loginPassword) {
